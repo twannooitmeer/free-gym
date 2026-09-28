@@ -192,7 +192,7 @@ export default async function MePage({
                           </span>
                         </span>
                       ) : (
-                        <span className="text-xs uppercase tracking-widest text-[color:var(--color-accent)]">
+                        <span className="text-xs uppercase tracking-widest text-[color:var(--color-accent-text)]">
                           {t('unlimitedLabel')}
                         </span>
                       )}

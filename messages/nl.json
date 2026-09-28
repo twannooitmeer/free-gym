@@ -8,14 +8,18 @@
     "myAccount": "Mijn account",
     "myClasses": "Mijn lessen",
     "admin": "Admin",
-    "bookTrial": "Boek een proefles"
+    "bookTrial": "Boek een proefles",
+    "main": "Hoofdmenu",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten",
+    "skipToContent": "Naar de inhoud"
   },
   "home": {
     "heroLine1": "Train",
     "heroLine2Prefix": "op",
     "heroLine2Highlight": "jouw",
     "heroLine2Suffix": "niveau.",
-    "heroSubtitle": "Groepslessen, personal training en sparring in een sfeer die wél doorpakt. Eerste les is gratis, kom gewoon eens kijken.",
+    "heroSubtitle": "Groepslessen, personal training en sparring in een sfeer die wél doorpakt. Nieuw? Kom een les meedraaien.",
     "ctaSecondary": "Bekijk het rooster",
     "offerHeading": "Het aanbod",
     "viewSchedule": "Volledig rooster",
@@ -42,7 +46,7 @@
   },
   "tryOut": {
     "title": "Boek een proefles",
-    "subtitle": "Je eerste les is gratis. Geen lange verhalen, gewoon langskomen en uitproberen.",
+    "subtitle": "Nieuwsgierig? Kom een les meedraaien. Geen lange verhalen, gewoon langskomen en kijken of het past.",
     "intro": "Maak een account aan, kies een les en we zien je in de zaal. Nieuw in de sport? Geen probleem, we starten op jouw niveau.",
     "cta": "Naar het rooster"
   },
@@ -79,7 +83,10 @@
       "past": "Geweest",
       "future": "Beschikbaar",
       "booked": "Geboekt"
-    }
+    },
+    "noSessionsDay": "Geen lessen op deze dag. Kies hierboven een andere dag.",
+    "classCount": "{count, plural, one {# les} other {# lessen}}",
+    "filterLabel": "Filter op soort les"
   },
   "contact": {
     "title": "Contact",
@@ -263,5 +270,11 @@
       "cancelled": "Deze boeking is geannuleerd.",
       "failed": "Inchecken mislukt. Probeer het opnieuw."
     }
+  },
+  "notFound": {
+    "title": "Pagina niet gevonden",
+    "body": "Deze pagina bestaat niet (meer). Het rooster staat nog gewoon op zijn plek.",
+    "toSchedule": "Naar het rooster",
+    "toHome": "Home"
   }
 }

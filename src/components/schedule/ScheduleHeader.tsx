@@ -37,31 +37,32 @@ export async function ScheduleHeader({ locale, weekStart, selectedType, sessionT
         <div className="flex items-center gap-2 text-sm">
           <Link
             href={linkFor(prev, selectedType)}
-            className="rounded-md border border-[color:var(--color-border)] px-3 py-1.5 transition hover:border-[color:var(--color-text-muted)]"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-[color:var(--color-border)] px-3 transition hover:border-[color:var(--color-text-muted)]"
             aria-label={t('prevWeek')}
           >
-            ‹
+            <span aria-hidden="true">‹</span>
           </Link>
           <Link
             href={linkFor(today, selectedType)}
-            className="rounded-md border border-[color:var(--color-border)] px-3 py-1.5 transition hover:border-[color:var(--color-text-muted)]"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-[color:var(--color-border)] px-3 transition hover:border-[color:var(--color-text-muted)]"
           >
             {t('thisWeek')}
           </Link>
           <Link
             href={linkFor(next, selectedType)}
-            className="rounded-md border border-[color:var(--color-border)] px-3 py-1.5 transition hover:border-[color:var(--color-text-muted)]"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border border-[color:var(--color-border)] px-3 transition hover:border-[color:var(--color-text-muted)]"
             aria-label={t('nextWeek')}
           >
-            ›
+            <span aria-hidden="true">›</span>
           </Link>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2 text-sm">
+      <nav aria-label={t('filterLabel')} className="flex flex-wrap gap-2 text-sm">
         <Link
           href={linkFor(dateToYmd(weekStart))}
-          className={`rounded-full border px-3 py-1 transition ${
+          aria-current={!selectedType ? 'true' : undefined}
+          className={`inline-flex min-h-10 items-center rounded-full border px-4 transition ${
             !selectedType
               ? 'border-[color:var(--color-accent)] bg-[color:var(--color-accent)] text-white'
               : 'border-[color:var(--color-border)] text-[color:var(--color-text-muted)] hover:border-[color:var(--color-text-muted)]'
@@ -75,7 +76,8 @@ export async function ScheduleHeader({ locale, weekStart, selectedType, sessionT
             <Link
               key={type.id}
               href={linkFor(dateToYmd(weekStart), type.slug)}
-              className={`rounded-full border px-3 py-1 transition ${
+              aria-current={active ? 'true' : undefined}
+              className={`inline-flex min-h-10 items-center rounded-full border px-4 transition ${
                 active
                   ? 'border-[color:var(--color-accent)] bg-[color:var(--color-accent)] text-white'
                   : 'border-[color:var(--color-border)] text-[color:var(--color-text-muted)] hover:border-[color:var(--color-text-muted)]'
@@ -85,7 +87,7 @@ export async function ScheduleHeader({ locale, weekStart, selectedType, sessionT
             </Link>
           )
         })}
-      </div>
+      </nav>
     </div>
   )
 }

@@ -32,7 +32,7 @@ export function CheckInButton({ code }: { code: string }) {
       >
         {isPending ? '…' : t('checkIn')}
       </button>
-      {error && <p className="text-sm text-[color:var(--color-accent)]">{error}</p>}
+      {error && <p role="alert" className="text-sm text-[color:var(--color-accent-text)]">{error}</p>}
     </div>
   )
 }

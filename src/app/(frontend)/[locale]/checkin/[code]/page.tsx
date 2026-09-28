@@ -51,9 +51,9 @@ export default async function CheckInPage({
 
   const booking = await findBookingByCode(code)
   const reg = booking && toRegistration(booking)
-  if (!reg) return shell(<p className="text-[color:var(--color-accent)]">{t('errors.not-found')}</p>)
+  if (!reg) return shell(<p className="text-[color:var(--color-accent-text)]">{t('errors.not-found')}</p>)
   if (staff.collection === 'teachers' && String(reg.teacherId) !== staff.id) {
-    return shell(<p className="text-[color:var(--color-accent)]">{t('errors.not-your-class')}</p>)
+    return shell(<p className="text-[color:var(--color-accent-text)]">{t('errors.not-your-class')}</p>)
   }
 
   const when = `${formatDayHeader(reg.startsAt, locale)} · ${formatTime(reg.startsAt, locale)} – ${formatTime(reg.endsAt, locale)}`
@@ -65,7 +65,7 @@ export default async function CheckInPage({
       </p>
       <div className="mt-8">
         {reg.status === 'cancelled' && (
-          <p className="text-[color:var(--color-accent)]">{t('errors.cancelled')}</p>
+          <p className="text-[color:var(--color-accent-text)]">{t('errors.cancelled')}</p>
         )}
         {reg.status === 'attended' && (
           <p className="text-lg font-semibold">

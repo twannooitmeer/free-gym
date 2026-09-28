@@ -30,11 +30,11 @@ export function CancelButton({ bookingId }: { bookingId: number | string }) {
         type="button"
         onClick={onClick}
         disabled={isPending}
-        className="rounded-md border border-[color:var(--color-border)] px-3 py-1.5 text-xs font-medium text-[color:var(--color-text-muted)] transition hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-text)] disabled:opacity-60"
+        className="inline-flex min-h-11 items-center rounded-md border border-[color:var(--color-border)] px-3 text-sm font-medium text-[color:var(--color-text-muted)] transition hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-text)] disabled:opacity-60"
       >
         {isPending ? '…' : t('cancel')}
       </button>
-      {error && <p className="text-[10px] text-[color:var(--color-accent)]">{error}</p>}
+      {error && <p role="alert" className="text-xs text-[color:var(--color-accent-text)]">{error}</p>}
     </div>
   )
 }

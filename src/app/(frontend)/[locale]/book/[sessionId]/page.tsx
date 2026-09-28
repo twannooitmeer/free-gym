@@ -155,7 +155,7 @@ export default async function BookPage({
           {/* Action area: past / full / already booked block confirmation. */}
           <div className="mt-6 border-t border-[color:var(--color-border)] pt-6">
             {isCancelled ? (
-              <p className="text-sm text-[color:var(--color-accent)]">{t('isCancelled')}</p>
+              <p className="text-sm text-[color:var(--color-accent-text)]">{t('isCancelled')}</p>
             ) : isPast ? (
               <p className="text-sm text-[color:var(--color-text-muted)]">{t('isPast')}</p>
             ) : alreadyBooked ? (
@@ -169,7 +169,7 @@ export default async function BookPage({
                 </Link>
               </div>
             ) : isFull ? (
-              <p className="text-sm text-[color:var(--color-accent)]">{t('isFull')}</p>
+              <p className="text-sm text-[color:var(--color-accent-text)]">{t('isFull')}</p>
             ) : (
               <div className="flex flex-col gap-3">
                 {!quote.free && (

@@ -21,7 +21,7 @@ export function SignOutButton() {
           router.refresh()
         })
       }
-      className="text-xs font-medium text-[color:var(--color-text-muted)] underline-offset-4 hover:text-[color:var(--color-text)] hover:underline"
+      className="inline-flex min-h-11 shrink-0 items-center whitespace-nowrap rounded-md border border-[color:var(--color-border)] px-3 text-sm font-medium text-[color:var(--color-text-muted)] transition hover:border-[color:var(--color-text-muted)] hover:text-[color:var(--color-text)] disabled:opacity-60"
     >
       {t('signOut')}
     </button>

@@ -73,10 +73,10 @@ export function ProfileForm({ initial }: Props) {
           {isPending ? '…' : t('save')}
         </button>
         {state === 'saved' && (
-          <span className="text-xs text-[color:var(--color-text-muted)]">{t('saved')}</span>
+          <span role="status" className="text-xs text-[color:var(--color-text-muted)]">{t('saved')}</span>
         )}
         {state === 'error' && (
-          <span className="text-xs text-[color:var(--color-accent)]">{t('saveError')}</span>
+          <span role="alert" className="text-xs text-[color:var(--color-accent-text)]">{t('saveError')}</span>
         )}
       </div>
     </form>

@@ -47,7 +47,7 @@ export function UpcomingCountdown({ bookingId, title, startsAtIso, endsAtIso, no
         </p>
         <Link
           href={`/me/bookings/${bookingId}`}
-          className="rounded-md bg-[color:var(--color-accent)] px-3 py-1.5 font-semibold text-white transition hover:bg-[color:var(--color-accent-hover)]"
+          className="inline-flex min-h-11 items-center rounded-md bg-[color:var(--color-accent)] px-3 font-semibold text-white transition hover:bg-[color:var(--color-accent-hover)]"
         >
           {t('open')}
         </Link>

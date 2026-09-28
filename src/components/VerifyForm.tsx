@@ -94,7 +94,7 @@ export function VerifyForm({ next, email }: Props) {
           className="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-4 py-3 text-center text-2xl tracking-[0.5em] font-mono text-[color:var(--color-text)] outline-none transition focus:border-[color:var(--color-accent)]"
         />
       </label>
-      {error && <p className="text-sm text-[color:var(--color-accent)]">{error}</p>}
+      {error && <p role="alert" className="text-sm text-[color:var(--color-accent-text)]">{error}</p>}
       {info && <p className="text-sm text-[color:var(--color-text-muted)]">{info}</p>}
       <button
         type="submit"
