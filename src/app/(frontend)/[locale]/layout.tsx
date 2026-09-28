@@ -3,10 +3,12 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
+import { DemoNotice } from '@/components/DemoNotice'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteHeader } from '@/components/SiteHeader'
 import { UpcomingBanner } from '@/components/UpcomingBanner'
 import { routing } from '@/i18n/routing'
+import { isDemoMode } from '@/lib/demo'
 import { getGymProfile } from '@/lib/gymProfile'
 
 import '../styles.css'
@@ -26,6 +28,8 @@ export async function generateMetadata({
   return {
     title: { default: gym.name, template: `%s · ${gym.name}` },
     description: gym.tagline ?? undefined,
+    // A public demo is wiped nightly and full of test data: keep it out of search.
+    ...(isDemoMode() ? { robots: { index: false, follow: false } } : {}),
   }
 }
 
@@ -56,6 +60,7 @@ export default async function LocaleLayout({
           <a href="#main" className="skip-link">
             {t('skipToContent')}
           </a>
+          <DemoNotice />
           <SiteHeader />
           <UpcomingBanner />
           <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">

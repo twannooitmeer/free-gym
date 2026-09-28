@@ -153,6 +153,24 @@ docker compose exec -T postgres sh -c 'pg_dump -U "$POSTGRES_USER" "$POSTGRES_DB
 Uploaded images (teacher avatars) are in the `media` volume; back it up
 too if you use them.
 
+## Public demo
+
+To run a public demo (never a real gym), set `DEMO_MODE=1` and
+`SEED_ADMIN_PASSWORD` (16+ characters) in `.env`, start the stack, and
+load the demo gym:
+
+```bash
+docker compose --profile tools run --rm tools   # wipes the database and reseeds it
+```
+
+Demo mode shows a notice on every page with the public demo logins
+(member `customer@example.test` / `demo-customer-pass`, teacher
+`teacher@example.test` / `demo-teacher-pass`), asks search engines not to
+index the site, and freezes those shared accounts so a visitor cannot lock
+others out. The admin (`admin@example.test`) uses `SEED_ADMIN_PASSWORD`.
+Run the same command nightly from a host timer to reset the demo; it
+refuses to run without `DEMO_MODE=1`, because it deletes everything.
+
 ## Development
 
 Requirements: Node 24, pnpm 11 (`corepack enable`), Docker.

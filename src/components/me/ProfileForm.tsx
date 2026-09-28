@@ -15,7 +15,7 @@ type Props = {
 
 export function ProfileForm({ initial }: Props) {
   const t = useTranslations('me')
-  const [state, setState] = useState<'idle' | 'saved' | 'error'>('idle')
+  const [state, setState] = useState<'idle' | 'saved' | 'error' | 'readonly'>('idle')
   const [isPending, startTransition] = useTransition()
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -29,7 +29,7 @@ export function ProfileForm({ initial }: Props) {
     }
     startTransition(async () => {
       const res = await updateProfile(payload)
-      setState(res.ok ? 'saved' : 'error')
+      setState(res.ok ? 'saved' : 'error' in res && res.error === 'demo-readonly' ? 'readonly' : 'error')
     })
   }
 
@@ -74,6 +74,9 @@ export function ProfileForm({ initial }: Props) {
         </button>
         {state === 'saved' && (
           <span role="status" className="text-xs text-[color:var(--color-text-muted)]">{t('saved')}</span>
+        )}
+        {state === 'readonly' && (
+          <span role="alert" className="text-xs text-[color:var(--color-accent-text)]">{t('demoReadonly')}</span>
         )}
         {state === 'error' && (
           <span role="alert" className="text-xs text-[color:var(--color-accent-text)]">{t('saveError')}</span>

@@ -38,6 +38,14 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+# Tools image: the full source and dependencies, for one-off commands the
+# lean runtime image deliberately does not ship (the seed, demo:reset).
+# Built only when asked for: docker compose --profile tools run --rm tools
+FROM builder AS tools
+RUN corepack enable pnpm
+ENV NODE_ENV=production
+CMD ["pnpm", "demo:reset"]
+
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app

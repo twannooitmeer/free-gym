@@ -4,6 +4,7 @@ import {
   isAdmin,
   isAdminField,
   isAdminOrSelf,
+  freezeInDemo,
   onlyAdminsChangeEmail,
   onlyAdminsCreateOverApi,
 } from '../access/roles'
@@ -33,7 +34,7 @@ export const Teachers: CollectionConfig = {
   auth: authOptions(MEMBER_SESSION_SECONDS),
   hooks: {
     beforeOperation: [onlyAdminsCreateOverApi],
-    beforeChange: [onlyAdminsChangeEmail],
+    beforeChange: [onlyAdminsChangeEmail, freezeInDemo],
   },
   access: {
     create: isAdmin,

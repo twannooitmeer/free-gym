@@ -55,6 +55,7 @@ services:
       SITE_URL: ${SITE_URL:?set SITE_URL in .env, e.g. https://book.example.com}
       RESEND_API_KEY: ${RESEND_API_KEY:-}
       EMAIL_FROM: ${EMAIL_FROM:-}
+      DEMO_MODE: ${DEMO_MODE:-}
     volumes:
       - media:/app/media
     ports:
@@ -75,6 +76,29 @@ services:
       resources:
         limits:
           memory: 1g
+
+  # One-off commands from the full source (seed, demo:reset). Not started by
+  # `up`; run it with: docker compose --profile tools run --rm tools
+  tools:
+    profiles: [tools]
+    build:
+      context: .
+      target: tools
+    image: free-gym-tools:local
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      TZ: ${TZ:-Europe/Amsterdam}
+      DATABASE_URL: postgres://${POSTGRES_USER:?set POSTGRES_USER in .env}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@postgres:5432/${POSTGRES_DB:?set POSTGRES_DB in .env}
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET:?set PAYLOAD_SECRET in .env}
+      SITE_URL: ${SITE_URL:?set SITE_URL in .env}
+      DEMO_MODE: ${DEMO_MODE:-}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-}
+    networks: [internal]
+    security_opt: [no-new-privileges:true]
+    logging: *logging
 
 networks:
   internal:

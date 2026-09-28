@@ -15,22 +15,30 @@
  * run with NODE_ENV=production.
  */
 
+import { pathToFileURL } from 'node:url'
+
 import { getPayload, type Payload } from 'payload'
 
 import config from '../src/payload.config'
 
-const ADMIN = { email: 'admin@example.test', password: 'demo-admin-pass', name: 'Demo Admin' }
-const TEACHER = {
-  email: 'teacher@example.test',
-  password: 'demo-teacher-pass',
-  name: 'Demo Teacher',
-  bio: 'Head coach. Stand-up specialist.',
+import { DEMO_CUSTOMER, DEMO_TEACHER, isDemoMode } from '../src/lib/demo'
+
+/**
+ * The admin's password is public for local development only. In demo mode
+ * the site is public, so it must come from SEED_ADMIN_PASSWORD instead.
+ */
+function adminPassword(): string {
+  if (!isDemoMode()) return 'demo-admin-pass'
+  const pw = process.env.SEED_ADMIN_PASSWORD
+  if (!pw || pw.length < 16) {
+    throw new Error('seed: DEMO_MODE=1 needs SEED_ADMIN_PASSWORD (at least 16 characters)')
+  }
+  return pw
 }
-const CUSTOMER = {
-  email: 'customer@example.test',
-  password: 'demo-customer-pass',
-  name: 'Demo Customer',
-}
+
+const ADMIN = { email: 'admin@example.test', name: 'Demo Admin' }
+const TEACHER = { ...DEMO_TEACHER, bio: 'Head coach. Stand-up specialist.' }
+const CUSTOMER = DEMO_CUSTOMER
 
 const SESSION_TYPES = [
   { slug: 'kickboxing', name: 'Kickboxing', color: '#dc2626', priceCents: 1500, coveredByMembership: true },
@@ -92,11 +100,12 @@ async function upsert(
   return { doc, created: true }
 }
 
-async function seed() {
-  const payloadConfig = await config
-  const payload = await getPayload({ config: payloadConfig })
-
-  if (process.env.NODE_ENV === 'production') {
+/**
+ * Fill the database with the demo gym. Idempotent. Refuses on a production
+ * install unless it is a demo (DEMO_MODE=1): the demo passwords are public.
+ */
+export async function seed(payload: Payload) {
+  if (process.env.NODE_ENV === 'production' && !isDemoMode()) {
     throw new Error('seed: refusing to run with NODE_ENV=production (the demo passwords are public)')
   }
   console.log('seeding...')
@@ -121,7 +130,7 @@ async function seed() {
   // ── Identity ─────────────────────────────────────────────────────
   const admin = await upsert(payload, 'admins', 'email', ADMIN.email, {
     name: ADMIN.name,
-    password: ADMIN.password,
+    password: adminPassword(),
   })
   console.log(`  admin: ${ADMIN.email} (${admin.created ? 'created' : 'updated'})`)
 
@@ -190,6 +199,22 @@ async function seed() {
       daysOfWeek: ['tue', 'thu'],
     },
     {
+      name: 'Fri Morning Kickboxing 07:00',
+      typeSlug: 'kickboxing',
+      startTime: '07:00',
+      durationMinutes: 60,
+      capacity: 16,
+      daysOfWeek: ['fri'],
+    },
+    {
+      name: 'Sun Personal Training 10:00',
+      typeSlug: 'pt',
+      startTime: '10:00',
+      durationMinutes: 60,
+      capacity: 1,
+      daysOfWeek: ['sun'],
+    },
+    {
       name: 'Sat Sparring 11:00',
       typeSlug: 'sparring',
       startTime: '11:00',
@@ -218,17 +243,41 @@ async function seed() {
     console.log(`  session-series: ${s.name} (${r.created ? 'created' : 'updated'})`)
   }
 
+  // ── The demo member holds a 10-class card, so booking with a credit
+  //    (and getting it back on cancel) can be tried right away. ─────
+  const card = await findOne(payload, 'membership-types', { slug: { equals: '10-strip-card' } })
+  const hasCard = await findOne(payload, 'memberships', {
+    and: [{ customer: { equals: customer.doc.id } }, { type: { equals: card?.id } }],
+  })
+  if (card && !hasCard) {
+    await payload.create({
+      collection: 'memberships',
+      data: {
+        customer: customer.doc.id,
+        type: card.id,
+        status: 'active',
+        startsAt: new Date().toISOString(),
+      },
+      overrideAccess: true,
+    })
+    console.log('  membership: 10-strip card for the demo member')
+  }
+
   console.log('done.')
   console.log('')
   console.log('Login:')
-  console.log(`  admin:    ${ADMIN.email} / ${ADMIN.password}  (Payload admin)`)
+  console.log(`  admin:    ${ADMIN.email} / ${isDemoMode() ? '(SEED_ADMIN_PASSWORD)' : adminPassword()}  (Payload admin)`)
   console.log(`  teacher:  ${TEACHER.email} / ${TEACHER.password}  (/login)`)
   console.log(`  customer: ${CUSTOMER.email} / ${CUSTOMER.password}  (/login)`)
 }
 
-seed()
-  .then(() => process.exit(0))
-  .catch((err) => {
-    console.error(err)
-    process.exit(1)
-  })
+const runDirectly = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href
+if (runDirectly) {
+  getPayload({ config: await config })
+    .then((payload) => seed(payload))
+    .then(() => process.exit(0))
+    .catch((err) => {
+      console.error(err)
+      process.exit(1)
+    })
+}

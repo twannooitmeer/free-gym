@@ -202,7 +202,8 @@
     "creditsLabel": "tegoeden",
     "unlimitedLabel": "Onbeperkt",
     "validUntil": "Geldig tot {date}",
-    "notCancellable": "Deze boeking kan niet meer geannuleerd worden."
+    "notCancellable": "Deze boeking kan niet meer geannuleerd worden.",
+    "demoReadonly": "Het gedeelde demo-lid kan niet aangepast worden. Maak een eigen account aan om dit te proberen."
   },
   "teach": {
     "title": "Mijn lessen",
@@ -276,5 +277,12 @@
     "body": "Deze pagina bestaat niet (meer). Het rooster staat nog gewoon op zijn plek.",
     "toSchedule": "Naar het rooster",
     "toHome": "Home"
+  },
+  "demo": {
+    "label": "Demo",
+    "title": "Dit is een demo.",
+    "body": "Alles wordt elke nacht om 03:00 teruggezet. Maak een eigen account aan met een verzonnen naam (andere bezoekers kunnen die zien), of log in met een demo-account.",
+    "member": "Lid:",
+    "teacher": "Docent:"
   }
 }

@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { getPayload } from 'payload'
 
 import { getSession } from '@/lib/session'
+import { DEMO_CUSTOMER, isDemoMode } from '@/lib/demo'
 import config from '@/payload.config'
 
 type ProfileInput = {
@@ -50,6 +51,11 @@ export async function updateProfile(input: ProfileInput): Promise<ActionResult> 
   }
 
   if (Object.keys(data).length === 0) return { ok: true }
+
+  // In a public demo the member login is shared; its profile stays as seeded.
+  if (isDemoMode() && customer.email === DEMO_CUSTOMER.email) {
+    return { ok: false, error: 'demo-readonly' }
+  }
 
   try {
     await payload.update({
