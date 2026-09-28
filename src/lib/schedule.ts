@@ -79,6 +79,28 @@ export function gridRangeFromHours(hours: OpeningHour[] | null | undefined): {
   return { startHour, endHour }
 }
 
+/**
+ * Widen a grid range so every session in view fits inside it. Opening hours
+ * set the usual range, but a class the gym schedules outside them (an
+ * early-morning session, a late event) must not be drawn above or below
+ * the grid. Uses the server's local clock, like the rest of the grid.
+ */
+export function extendRangeToSessions(
+  range: { startHour: number; endHour: number },
+  sessions: Array<{ startsAt: string | Date; durationMinutes?: number | null }>,
+): { startHour: number; endHour: number } {
+  let { startHour, endHour } = range
+  for (const s of sessions) {
+    const start = new Date(s.startsAt)
+    if (Number.isNaN(start.getTime())) continue
+    const startMin = start.getHours() * 60 + start.getMinutes()
+    const endMin = startMin + Math.max(0, Number(s.durationMinutes ?? 60))
+    startHour = Math.min(startHour, Math.floor(startMin / 60))
+    endHour = Math.max(endHour, Math.min(24, Math.ceil(endMin / 60)))
+  }
+  return { startHour: Math.max(0, startHour), endHour: Math.min(24, endHour) }
+}
+
 /** Map weekday key → opening row (or null when closed/missing). */
 export function buildOpeningMap(
   hours: OpeningHour[] | null | undefined,

@@ -7,6 +7,7 @@ import { ScheduleHeader } from '@/components/schedule/ScheduleHeader'
 import { ScheduleLegend } from '@/components/schedule/ScheduleLegend'
 import {
   buildOpeningMap,
+  extendRangeToSessions,
   gridRangeFromHours,
   startOfWeek,
   weekRange,
@@ -38,7 +39,6 @@ export default async function SchedulePage({ params, searchParams }: Props) {
   // Opening hours drive the visible hour range on the grid.
   const settings = await payload.findGlobal({ slug: 'settings', depth: 0 })
   const openingHours = (settings.openingHours ?? []) as OpeningHour[]
-  const { startHour, endHour } = gridRangeFromHours(openingHours)
   const openingMap = buildOpeningMap(openingHours)
 
   // Admin-tunable schedule background colors.
@@ -70,6 +70,12 @@ export default async function SchedulePage({ params, searchParams }: Props) {
       ],
     },
   })
+
+  // Opening hours set the range; any class outside them widens it.
+  const { startHour, endHour } = extendRangeToSessions(
+    gridRangeFromHours(openingHours),
+    sessions.docs,
+  )
 
   // One aggregate booking query keeps the grid render cheap regardless of
   // how many sessions are on screen.
