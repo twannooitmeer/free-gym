@@ -202,7 +202,8 @@
     "creditsLabel": "credits",
     "unlimitedLabel": "Unlimited",
     "validUntil": "Valid until {date}",
-    "notCancellable": "This booking can no longer be cancelled."
+    "notCancellable": "This booking can no longer be cancelled.",
+    "demoReadonly": "The shared demo member cannot be changed. Create your own account to try this."
   },
   "teach": {
     "title": "My classes",
@@ -276,5 +277,12 @@
     "body": "This page does not exist (any more). The schedule is still where it was.",
     "toSchedule": "To the schedule",
     "toHome": "Home"
+  },
+  "demo": {
+    "label": "Demo",
+    "title": "This is a demo.",
+    "body": "Everything is reset every night at 03:00. Create your own account with a made-up name (other visitors can see it), or sign in with a demo login.",
+    "member": "Member:",
+    "teacher": "Teacher:"
   }
 }

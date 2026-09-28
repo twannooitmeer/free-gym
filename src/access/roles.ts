@@ -6,6 +6,8 @@ import {
   type FieldAccess,
 } from 'payload'
 
+import { isDemoMode } from '../lib/demo'
+
 /**
  * Role helpers based on which auth collection the logged-in user belongs to.
  * Payload sets `user.collection` to the slug of the collection used to log in.
@@ -75,6 +77,18 @@ export const onlyAdminsChangeEmail: CollectionBeforeChangeHook = ({ data, origin
     originalDoc?.email &&
     data.email.trim().toLowerCase() !== String(originalDoc.email).toLowerCase()
   ) {
+    throw new Forbidden(req.t)
+  }
+  return data
+}
+
+/**
+ * In a public demo (DEMO_MODE=1) the teacher login is shared, so nobody
+ * but an admin may change a teacher record: otherwise the first visitor
+ * could change its password and lock everyone else out until the reset.
+ */
+export const freezeInDemo: CollectionBeforeChangeHook = ({ data, operation, req }) => {
+  if (isDemoMode() && operation === 'update' && req.user?.collection !== 'admins' && req.payloadAPI !== 'local') {
     throw new Forbidden(req.t)
   }
   return data
