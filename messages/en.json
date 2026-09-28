@@ -8,14 +8,18 @@
     "myAccount": "My account",
     "myClasses": "My classes",
     "admin": "Admin",
-    "bookTrial": "Book a trial"
+    "bookTrial": "Book a trial",
+    "main": "Main",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "skipToContent": "Skip to content"
   },
   "home": {
     "heroLine1": "Train",
     "heroLine2Prefix": "at",
     "heroLine2Highlight": "your",
     "heroLine2Suffix": "level.",
-    "heroSubtitle": "Group classes, personal training and sparring in a place that actually pushes you. Your first session is on us, just come by.",
+    "heroSubtitle": "Group classes, personal training and sparring in a place that actually pushes you. New here? Come and try a class.",
     "ctaSecondary": "View the schedule",
     "offerHeading": "What we offer",
     "viewSchedule": "Full schedule",
@@ -42,7 +46,7 @@
   },
   "tryOut": {
     "title": "Book a trial",
-    "subtitle": "Your first session is free. No long story, just show up and try it.",
+    "subtitle": "Curious? Come and try a class. No long story, just show up and see if it fits.",
     "intro": "Create an account, pick a class, and we'll see you in the gym. New to the sport? No problem, we start at your level.",
     "cta": "To the schedule"
   },
@@ -79,7 +83,10 @@
       "past": "Past",
       "future": "Available",
       "booked": "Booked"
-    }
+    },
+    "noSessionsDay": "No classes on this day. Pick another day above.",
+    "classCount": "{count, plural, one {# class} other {# classes}}",
+    "filterLabel": "Filter by class type"
   },
   "contact": {
     "title": "Contact",
@@ -263,5 +270,11 @@
       "cancelled": "This booking was cancelled.",
       "failed": "Check-in failed. Please try again."
     }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This page does not exist (any more). The schedule is still where it was.",
+    "toSchedule": "To the schedule",
+    "toHome": "Home"
   }
 }

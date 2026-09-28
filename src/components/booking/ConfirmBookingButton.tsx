@@ -59,7 +59,7 @@ export function ConfirmBookingButton({ sessionId, requiresPayment }: Props) {
       >
         {isPending ? '…' : requiresPayment ? t('reserveCta') : t('confirmCta')}
       </button>
-      {error && <p className="text-xs text-[color:var(--color-accent)]">{error}</p>}
+      {error && <p role="alert" className="text-xs text-[color:var(--color-accent-text)]">{error}</p>}
     </div>
   )
 }

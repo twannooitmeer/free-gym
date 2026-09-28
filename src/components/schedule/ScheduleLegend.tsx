@@ -19,7 +19,7 @@ export async function ScheduleLegend({ colors }: Props) {
   ]
   return (
     <ul
-      className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[11px] text-[color:var(--color-text-muted)]"
+      className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[color:var(--color-text-muted)]"
       aria-label={t('label')}
     >
       {items.map((it) => (

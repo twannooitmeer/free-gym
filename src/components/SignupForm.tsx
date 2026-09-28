@@ -87,11 +87,11 @@ export function SignupForm({ next }: Props) {
           autoComplete="new-password"
           className="rounded-md border border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-4 py-3 text-[color:var(--color-text)] outline-none transition focus:border-[color:var(--color-accent)]"
         />
-        <span className="text-[10px] text-[color:var(--color-text-dim)]">
+        <span className="text-xs text-[color:var(--color-text-muted)]">
           {t('passwordHint')}
         </span>
       </label>
-      {error && <p className="text-sm text-[color:var(--color-accent)]">{error}</p>}
+      {error && <p role="alert" className="text-sm text-[color:var(--color-accent-text)]">{error}</p>}
       <button
         type="submit"
         disabled={isPending}

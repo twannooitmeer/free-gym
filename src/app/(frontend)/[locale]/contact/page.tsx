@@ -43,7 +43,7 @@ export default async function ContactPage({
               </dt>
               <dd className="whitespace-pre-line text-base">
                 {row.href ? (
-                  <a href={row.href} className="hover:text-[color:var(--color-accent)]">
+                  <a href={row.href} className="hover:text-[color:var(--color-accent-text)]">
                     {row.value}
                   </a>
                 ) : (

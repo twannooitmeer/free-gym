@@ -39,7 +39,7 @@ export function NowLine({ label, startHour, endHour }: Props) {
       style={{ top: `${top}px` }}
       aria-hidden="true"
     >
-      <span className="rounded-sm bg-[color:var(--color-accent)] px-1 py-0.5 text-[10px] font-bold tracking-wider text-white">
+      <span className="rounded-sm bg-[color:var(--color-accent)] px-1 py-0.5 text-xs font-bold tracking-wider text-white">
         {label}
       </span>
       <div className="h-px flex-1 bg-[color:var(--color-accent)]" />

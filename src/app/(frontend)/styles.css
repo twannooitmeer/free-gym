@@ -14,10 +14,15 @@
   --color-border: #2a2a2a;
   --color-text: #f5f5f4;
   --color-text-muted: #a3a3a3;
-  --color-text-dim: #6b6b6b;
+  /* Dim text still has to read: 5.8:1 on the canvas (WCAG AA needs 4.5). */
+  --color-text-dim: #8f8f8f;
   --color-accent: #dc2626;
-  --color-accent-hover: #ef4444;
-  --color-accent-press: #b91c1c;
+  /* Hover and press go darker: white text on them stays above 4.5:1. */
+  --color-accent-hover: #b91c1c;
+  --color-accent-press: #991b1b;
+  /* The accent as TEXT (errors, today, small labels): #dc2626 is only
+     4.1:1 on the canvas, this is 7.2:1. */
+  --color-accent-text: #f87171;
   --color-success: #16a34a;
   --color-warning: #d97706;
 
@@ -71,3 +76,49 @@ body {
   background: var(--color-accent);
 }
 
+/* -------------------------------------------------------------------------- */
+/*  Accessibility                                                              */
+/* -------------------------------------------------------------------------- */
+
+/* One visible keyboard focus indicator for every control. Unlayered, so it
+   wins over utility classes such as outline-none. */
+:focus-visible {
+  outline: 2px solid var(--color-accent-text);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* "Skip to content": first thing keyboard users reach, invisible otherwise. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 60;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Headings break into even lines instead of stranding a single word. */
+.display,
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

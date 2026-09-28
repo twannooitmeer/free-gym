@@ -36,6 +36,8 @@ type Props = {
     loginToBook: string
     noSessions: string
   }
+  /** Per day, "3 classes" (pluralised on the server), for the day buttons' names. */
+  classCountByDay: Record<string, string>
   locale: string
   viewerIsCustomer: boolean
   /** Server render time, so server and client agree on "now" (no hydration mismatch). */
@@ -51,6 +53,7 @@ export function MobileDayView({
   dayIsos,
   sessionsByDay,
   labels,
+  classCountByDay,
   locale,
   viewerIsCustomer,
   themeColors,
@@ -58,11 +61,18 @@ export function MobileDayView({
 }: Props) {
   const today = new Date(nowMs)
   const todayIso = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
-  const initialIdx = Math.max(
-    0,
-    dayIsos.findIndex((iso) => iso === todayIso),
-  )
-  const [activeIdx, setActiveIdx] = useState(initialIdx === -1 ? 0 : initialIdx)
+  // Open on the first day, from today on, that still has a class to go to;
+  // fall back to today (or Monday for another week). Landing on an empty
+  // evening while the rest of the week is full reads as "nothing on".
+  const hasUpcoming = (iso: string) =>
+    (sessionsByDay[iso] ?? []).some(
+      (s) => new Date(s.startsAt).getTime() + s.durationMinutes * 60_000 > nowMs,
+    )
+  const todayIdx = dayIsos.indexOf(todayIso)
+  const fromIdx = Math.max(0, todayIdx)
+  const firstWithClasses = dayIsos.findIndex((iso, i) => i >= fromIdx && hasUpcoming(iso))
+  const initialIdx = firstWithClasses !== -1 ? firstWithClasses : fromIdx
+  const [activeIdx, setActiveIdx] = useState(initialIdx)
   const activeIso = dayIsos[activeIdx]
   const activeDate = parseLocalIso(activeIso)
   const sessions = sessionsByDay[activeIso] ?? []
@@ -77,25 +87,34 @@ export function MobileDayView({
             const d = parseLocalIso(iso)
             const isToday = isSameLocalDay(d, today)
             const isActive = i === activeIdx
+            const count = (sessionsByDay[iso] ?? []).length
             return (
               <button
                 key={iso}
                 type="button"
                 onClick={() => setActiveIdx(i)}
-                className={`flex shrink-0 flex-col items-center rounded-md border px-3 py-2 text-xs transition ${
+                aria-pressed={isActive}
+                aria-label={`${formatDayHeader(d, locale)}${count ? ` · ${classCountByDay[iso]}` : ''}`}
+                className={`relative flex min-h-14 min-w-12 shrink-0 flex-col items-center justify-center rounded-md border px-3 py-2 text-xs transition ${
                   isActive
                     ? 'border-[color:var(--color-accent)] bg-[color:var(--color-accent)] text-white'
                     : isToday
-                      ? 'border-[color:var(--color-accent)]/50 text-[color:var(--color-accent)]'
+                      ? 'border-[color:var(--color-accent)]/50 text-[color:var(--color-accent-text)]'
                       : 'border-[color:var(--color-border)] text-[color:var(--color-text-muted)]'
                 }`}
               >
-                <span className="text-[10px] uppercase tracking-widest">
+                <span aria-hidden="true" className="text-xs uppercase tracking-wider">
                   {new Intl.DateTimeFormat(locale === 'nl' ? 'nl-NL' : 'en-GB', {
                     weekday: 'short',
                   }).format(d)}
                 </span>
-                <span className="display text-lg leading-none">{d.getDate()}</span>
+                <span aria-hidden="true" className="display text-lg leading-none">{d.getDate()}</span>
+                {count > 0 && (
+                  <span
+                    aria-hidden="true"
+                    className={`absolute bottom-1 size-1 rounded-full ${isActive ? 'bg-white' : 'bg-[color:var(--color-text-muted)]'}`}
+                  />
+                )}
               </button>
             )
           })}
@@ -156,12 +175,12 @@ export function MobileDayView({
                       {formatTime(start, locale)}–{formatTime(end, locale)}
                       {s.teacher ? ` · ${labels.with} ${s.teacher.name}` : ''}
                     </p>
-                    <p className="mt-0.5 text-[10px] text-[color:var(--color-text-dim)]">
+                    <p className="mt-0.5 text-xs text-[color:var(--color-text-muted)]">
                       {s.capacityLabel}
                     </p>
                   </div>
                   {stateLabel && (
-                    <span className="shrink-0 self-center rounded-sm bg-black/30 px-2 py-0.5 text-[10px] uppercase tracking-wider text-[color:var(--color-text-muted)]">
+                    <span className="shrink-0 self-center rounded-sm bg-black/30 px-2 py-0.5 text-xs uppercase tracking-wider text-[color:var(--color-text-muted)]">
                       {stateLabel}
                     </span>
                   )}

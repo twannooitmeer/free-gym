@@ -105,7 +105,7 @@ export async function ScheduleGrid({
                 key={`h-${d.toDateString()}`}
                 className={`border-b border-l border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-2 py-3 text-xs uppercase tracking-wider ${
                   isToday
-                    ? 'text-[color:var(--color-accent)]'
+                    ? 'text-[color:var(--color-accent-text)]'
                     : 'text-[color:var(--color-text-muted)]'
                 }`}
               >
@@ -120,7 +120,7 @@ export async function ScheduleGrid({
               {HOURS.map((h, i) => (
                 <div
                   key={h}
-                  className="absolute right-1 -translate-y-1/2 text-[10px] tabular-nums text-[color:var(--color-text-dim)]"
+                  className="absolute right-1 -translate-y-1/2 text-xs tabular-nums text-[color:var(--color-text-dim)]"
                   style={{ top: `${i * 60 * GRID_PX_PER_MIN}px` }}
                 >
                   {String(h).padStart(2, '0')}:00
@@ -145,7 +145,7 @@ export async function ScheduleGrid({
                 {/* Closed-day overlay */}
                 {isClosed && (
                   <div className="absolute inset-0 z-10 flex items-center justify-center bg-[color:var(--color-bg)]/60">
-                    <span className="text-[10px] uppercase tracking-widest text-[color:var(--color-text-dim)]">
+                    <span className="text-xs uppercase tracking-wider text-[color:var(--color-text-dim)]">
                       {closedLabel}
                     </span>
                   </div>
@@ -233,18 +233,18 @@ export async function ScheduleGrid({
                         <p className="truncate font-semibold text-[color:var(--color-text)]">
                           {title}
                         </p>
-                        <p className="truncate text-[10px] text-[color:var(--color-text-muted)]">
+                        <p className="truncate text-xs text-[color:var(--color-text-muted)]">
                           {formatTime(start, locale)}–{formatTime(end, locale)}
                           {s.teacher ? ` · ${t('with')} ${s.teacher.name}` : ''}
                         </p>
                         {!isCompact && (
-                          <p className="truncate text-[10px] text-[color:var(--color-text-dim)]">
+                          <p className="truncate text-xs text-[color:var(--color-text-muted)]">
                             {t('capacityLeft', { count: remaining })}
                           </p>
                         )}
                       </div>
                       {stateLabel && (
-                        <span className="pointer-events-none absolute right-1.5 top-1 rounded-sm bg-black/30 px-1.5 py-0.5 text-[9px] uppercase tracking-wider text-[color:var(--color-text-muted)]">
+                        <span className="pointer-events-none absolute right-1.5 top-1 rounded-sm bg-black/30 px-1.5 py-0.5 text-[11px] font-medium uppercase tracking-wide text-[color:var(--color-text-muted)]">
                           {stateLabel}
                         </span>
                       )}
@@ -280,6 +280,12 @@ export async function ScheduleGrid({
           so day switching is instant and doesn't trigger a page reload). */}
       <MobileDayView
         nowMs={now.getTime()}
+        classCountByDay={Object.fromEntries(
+          days.map((d) => [
+            dateToYmd(d),
+            t('classCount', { count: (sessionsByDay.get(d.toDateString()) ?? []).length }),
+          ]),
+        )}
         dayIsos={days.map((d) => dateToYmd(d))}
         sessionsByDay={Object.fromEntries(
           days.map((d) => [
@@ -307,7 +313,7 @@ export async function ScheduleGrid({
           booked: t('booked'),
           full: t('full'),
           loginToBook: t('loginToBook'),
-          noSessions: t('noSessions'),
+          noSessions: t('noSessionsDay'),
         }}
         locale={locale}
         viewerIsCustomer={viewerIsCustomer}

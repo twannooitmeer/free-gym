@@ -27,22 +27,28 @@ export function LocaleSwitch() {
     })
   }
 
+  const names: Record<string, string> = { nl: 'Nederlands', en: 'English' }
+
   return (
     <div
-      className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider"
+      role="group"
+      aria-label="Language / Taal"
+      className="flex items-center text-xs font-medium uppercase tracking-wider"
       aria-busy={isPending}
     >
       {routing.locales.map((loc) => (
         <button
           key={loc}
           type="button"
+          lang={loc}
           onClick={() => onSelect(loc)}
-          className={
+          aria-label={names[loc] ?? loc}
+          aria-pressed={loc === current}
+          className={`inline-flex size-11 items-center justify-center rounded-md ${
             loc === current
               ? 'text-[color:var(--color-text)]'
               : 'text-[color:var(--color-text-dim)] transition hover:text-[color:var(--color-text-muted)]'
-          }
-          aria-current={loc === current ? 'true' : undefined}
+          }`}
         >
           {loc}
         </button>

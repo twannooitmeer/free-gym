@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl'
-import { setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
@@ -39,6 +39,7 @@ export default async function LocaleLayout({
   const { locale } = await params
   if (!routing.locales.includes(locale as 'nl' | 'en')) notFound()
   setRequestLocale(locale)
+  const t = await getTranslations('nav')
 
   return (
     <html lang={locale} className="bg-[color:var(--color-bg)] text-[color:var(--color-text)]">
@@ -52,9 +53,14 @@ export default async function LocaleLayout({
       </head>
       <body className="flex min-h-screen flex-col antialiased">
         <NextIntlClientProvider>
+          <a href="#main" className="skip-link">
+            {t('skipToContent')}
+          </a>
           <SiteHeader />
           <UpcomingBanner />
-          <main className="flex-1">{children}</main>
+          <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
+            {children}
+          </main>
           <SiteFooter />
         </NextIntlClientProvider>
       </body>

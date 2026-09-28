@@ -50,11 +50,6 @@ export default async function HomePage({
               </Link>
             </div>
           </div>
-          <div className="hidden md:col-span-5 md:flex md:items-end">
-            <div className="display w-full text-right text-[10rem] leading-none text-[color:var(--color-surface-2)]">
-              03
-            </div>
-          </div>
         </div>
       </section>
 
@@ -68,7 +63,7 @@ export default async function HomePage({
             </div>
             <Link
               href="/schedule"
-              className="hidden text-sm font-medium text-[color:var(--color-text-muted)] transition hover:text-[color:var(--color-accent)] md:block"
+              className="hidden text-sm font-medium text-[color:var(--color-text-muted)] transition hover:text-[color:var(--color-accent-text)] md:block"
             >
               {t('viewSchedule')} →
             </Link>
@@ -79,7 +74,7 @@ export default async function HomePage({
                 key={card.kicker}
                 className="group flex flex-col gap-4 bg-[color:var(--color-surface)] p-10 transition hover:bg-[color:var(--color-surface-2)]"
               >
-                <span className="display text-xl text-[color:var(--color-accent)]">
+                <span className="display text-xl text-[color:var(--color-accent-text)]">
                   {card.kicker}
                 </span>
                 <h3 className="display text-3xl">{t(`cards.${card.key}.title`)}</h3>
@@ -95,16 +90,18 @@ export default async function HomePage({
       {/* Quote */}
       <section className="border-t border-[color:var(--color-border)]">
         <div className="mx-auto max-w-4xl px-6 py-24 text-center">
-          <p className="display text-3xl leading-tight md:text-5xl">
-            {t('quote.line1')}
-            <br />
-            {t('quote.line2')}
-            <br />
-            <span className="text-[color:var(--color-accent)]">{t('quote.line3Highlight')}</span>
-          </p>
-          <p className="mt-6 text-sm uppercase tracking-widest text-[color:var(--color-text-muted)]">
-            {t('quote.attribution')}
-          </p>
+          <figure>
+            <blockquote className="display text-2xl leading-tight sm:text-3xl md:text-5xl">
+              {t('quote.line1')}
+              <br />
+              {t('quote.line2')}
+              <br />
+              <span className="text-[color:var(--color-accent)]">{t('quote.line3Highlight')}</span>
+            </blockquote>
+            <figcaption className="mt-6 text-sm uppercase tracking-widest text-[color:var(--color-text-muted)]">
+              {t('quote.attribution')}
+            </figcaption>
+          </figure>
         </div>
       </section>
     </>
