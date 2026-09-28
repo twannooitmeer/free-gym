@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+
+/* -------------------------------------------------------------------------- */
+/*  Design tokens                                                              */
+/*  Dark, bold, geometric.                                                     */
+/*  Background: near-black canvas. Text: warm off-white.                       */
+/*  Accent: bold crimson, single accent only, used sparingly.                  */
+/* -------------------------------------------------------------------------- */
+
+@theme {
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-2: #1e1e1e;
+  --color-border: #2a2a2a;
+  --color-text: #f5f5f4;
+  --color-text-muted: #a3a3a3;
+  --color-text-dim: #6b6b6b;
+  --color-accent: #dc2626;
+  --color-accent-hover: #ef4444;
+  --color-accent-press: #b91c1c;
+  --color-success: #16a34a;
+  --color-warning: #d97706;
+
+  --font-sans: 'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+  --font-display: 'Anton', 'Bebas Neue', Impact, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+}
+
+/* -------------------------------------------------------------------------- */
+/*  Base                                                                       */
+/* -------------------------------------------------------------------------- */
+
+html {
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-text);
+}
+
+/* Display headings: tall, condensed, all-caps for the kickboxing feel. */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+/* A thin scarlet rule used as a section delimiter and visual punctuation. */
+.accent-bar {
+  display: inline-block;
+  width: 48px;
+  height: 3px;
+  background: var(--color-accent);
+}
+

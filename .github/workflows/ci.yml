@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Read-only token, no secrets: safe to run on pull requests from forks.
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: freegym
+          POSTGRES_PASSWORD: ci-only
+          POSTGRES_DB: free_gym
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U freegym -d free_gym"
+          --health-interval 5s --health-timeout 3s --health-retries 10
+    env:
+      DATABASE_URL: postgres://freegym:ci-only@localhost:5432/free_gym
+      TEST_DATABASE_URL: postgres://freegym:ci-only@localhost:5432/free_gym_test
+      PAYLOAD_SECRET: ci-only-this-is-not-a-secret
+      CRON_SECRET: ci-only
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - name: Conventions and privacy sweep
+        run: pnpm check
+      - run: pnpm lint
+      - run: pnpm exec tsc --noEmit
+      - name: Unit and integration tests
+        run: pnpm test:int
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: End-to-end tests
+        run: pnpm test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-traces
+          path: test-results/
+          retention-days: 7
+
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Production image builds without a database or secrets
+        run: docker build -t free-gym:ci .

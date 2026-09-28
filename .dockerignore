@@ -1,0 +1,14 @@
+# Never send secrets or host build output into the image.
+.env
+.env.*
+!.env.example
+node_modules
+.next
+*.tsbuildinfo
+media
+coverage
+playwright-report
+test-results
+blob-report
+.git
+.vscode

@@ -1,0 +1,85 @@
+name: free-gym
+
+# Production stack: Postgres + the app, built from this repo.
+#
+#   cp .env.example .env      # then fill in every value marked REQUIRED
+#   docker compose up -d --build
+#
+# Every credential is required (${VAR:?...}). Compose refuses to start
+# rather than silently initialise Postgres with a default password.
+#
+# The app listens on 127.0.0.1:${APP_PORT:-3000} only. Put a reverse proxy
+# with TLS in front of it (Caddy, nginx, Traefik) and set SITE_URL to the
+# public https:// address. Postgres has no published port at all.
+#
+# For local development use docker-compose.dev.yml instead (Postgres only,
+# the app runs on the host with `pnpm dev`).
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB in .env}
+      TZ: ${TZ:-Europe/Amsterdam}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks: [internal]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    security_opt: [no-new-privileges:true]
+    logging: &logging
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  app:
+    build: .
+    image: free-gym:local
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      TZ: ${TZ:-Europe/Amsterdam}
+      DATABASE_URL: postgres://${POSTGRES_USER:?set POSTGRES_USER in .env}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@postgres:5432/${POSTGRES_DB:?set POSTGRES_DB in .env}
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET:?set PAYLOAD_SECRET in .env (openssl rand -hex 32)}
+      CRON_SECRET: ${CRON_SECRET:?set CRON_SECRET in .env (openssl rand -hex 32)}
+      SITE_URL: ${SITE_URL:?set SITE_URL in .env, e.g. https://book.example.com}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      EMAIL_FROM: ${EMAIL_FROM:-}
+    volumes:
+      - media:/app/media
+    ports:
+      - "127.0.0.1:${APP_PORT:-3000}:3000"
+    # `internal` reaches Postgres; `default` gives the app outbound access
+    # (the Resend API) and carries the published port.
+    networks: [internal, default]
+    # /api/health is 25 bytes and answers 503 when Postgres is unreachable.
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+    security_opt: [no-new-privileges:true]
+    logging: *logging
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+
+networks:
+  internal:
+    internal: true
+
+volumes:
+  pgdata:
+  media:

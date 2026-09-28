@@ -1,0 +1,9 @@
+# Packages allowed to run install scripts (pnpm 11 reads allowBuilds).
+# pnpm itself is pinned by packageManager in package.json, so the Docker
+# build (corepack) uses the same pnpm as local development.
+allowBuilds:
+  '@parcel/watcher': true
+  '@swc/core': true
+  esbuild: true
+  sharp: true
+  unrs-resolver: true

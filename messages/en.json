@@ -1,0 +1,267 @@
+{
+  "nav": {
+    "schedule": "Schedule",
+    "tryOut": "Try-out",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Log in",
+    "myAccount": "My account",
+    "myClasses": "My classes",
+    "admin": "Admin",
+    "bookTrial": "Book a trial"
+  },
+  "home": {
+    "heroLine1": "Train",
+    "heroLine2Prefix": "at",
+    "heroLine2Highlight": "your",
+    "heroLine2Suffix": "level.",
+    "heroSubtitle": "Group classes, personal training and sparring in a place that actually pushes you. Your first session is on us, just come by.",
+    "ctaSecondary": "View the schedule",
+    "offerHeading": "What we offer",
+    "viewSchedule": "Full schedule",
+    "cards": {
+      "group": {
+        "title": "Group classes",
+        "body": "Technique, conditioning and drills in a group. All levels welcome, no experience needed."
+      },
+      "pt": {
+        "title": "Personal training",
+        "body": "One-on-one with a coach. Work on technique, strength, or a specific event."
+      },
+      "sparring": {
+        "title": "Sparring",
+        "body": "For those ready for more. Controlled sparring by appointment, for advanced members."
+      }
+    },
+    "quote": {
+      "line1": "“If my mind can conceive it,",
+      "line2": "if my heart can believe it,",
+      "line3Highlight": "then I can achieve it.”",
+      "attribution": "Muhammad Ali"
+    }
+  },
+  "tryOut": {
+    "title": "Book a trial",
+    "subtitle": "Your first session is free. No long story, just show up and try it.",
+    "intro": "Create an account, pick a class, and we'll see you in the gym. New to the sport? No problem, we start at your level.",
+    "cta": "To the schedule"
+  },
+  "schedule": {
+    "title": "Schedule",
+    "subtitle": "See what's on this week and book a spot in one click.",
+    "comingSoon": "The interactive week view ships in the next update.",
+    "prevWeek": "Previous week",
+    "nextWeek": "Next week",
+    "thisWeek": "This week",
+    "allTypes": "All classes",
+    "noSessions": "No classes scheduled this week.",
+    "closed": "Closed",
+    "capacityLeft": "{count, plural, =0 {full} =1 {1 spot left} other {# spots left}}",
+    "with": "with",
+    "book": "Book",
+    "booked": "Booked",
+    "full": "Full",
+    "loginToBook": "Log in to book",
+    "bookSuccess": "Booked. See you in the gym.",
+    "bookErrors": {
+      "full": "This class is full.",
+      "duplicate": "You've already booked this class.",
+      "credits-changed": "Your credits changed while you were booking. Check the price and try again.",
+      "wrong-role": "Bookings need a customer account.",
+      "not-authenticated": "Log in to book.",
+      "unverified": "Verify your email address before you can book.",
+      "failed": "Booking failed. Please try again later.",
+      "started": "This class has already started."
+    },
+    "now": "NOW",
+    "legend": {
+      "label": "Color legend",
+      "past": "Past",
+      "future": "Available",
+      "booked": "Booked"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Questions, a group booking, or just want to know more? Get in touch.",
+    "address": "Address",
+    "email": "Email",
+    "phone": "Phone",
+    "notConfigured": "Contact details have not been added yet."
+  },
+  "about": {
+    "title": "About {name}",
+    "subtitle": "Training with a no-nonsense approach and a warm welcome.",
+    "bodyDefault": "A place for anyone who wants to train, whatever their age or level. We train with focus and personal attention, and make sure you feel at home from day one."
+  },
+  "login": {
+    "title": "Log in",
+    "subtitle": "Sign in to manage your classes and membership.",
+    "teacherTitle": "Teacher sign-in",
+    "teacherSubtitle": "Sign in to see your classes and attendees.",
+    "asCustomer": "I'm a member, sign me in as a customer",
+    "asTeacher": "I'm a teacher, sign me in as a teacher",
+    "email": "Email",
+    "password": "Password",
+    "submit": "Log in",
+    "error": "Email or password is incorrect.",
+    "noAccount": "No account yet? Ask at the desk."
+  },
+  "signup": {
+    "title": "Create an account",
+    "subtitle": "Set up an account so you can book classes. Takes less than a minute.",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "passwordHint": "At least 8 characters.",
+    "submit": "Create account",
+    "verifyNote": "We'll send you a verification code by email. You can book once verified.",
+    "haveAccount": "Already have an account?",
+    "logInInstead": "Log in",
+    "errors": {
+      "name-required": "Please enter your name.",
+      "invalid-email": "Please enter a valid email address.",
+      "weak-password": "Password must be at least 8 characters.",
+      "email-in-use": "An account with that email already exists. Try logging in.",
+      "failed": "Could not create the account. Please try again later."
+    }
+  },
+  "verify": {
+    "title": "Verify your email",
+    "subtitle": "Enter the six-digit code we just sent you.",
+    "sentTo": "We sent a code to <b>{email}</b>. Check your spam folder too if it doesn't show up.",
+    "codeLabel": "Verification code",
+    "submit": "Confirm",
+    "resend": "Resend code",
+    "resent": "New code sent.",
+    "rateLimited": "Hold on, try again in {sec} seconds.",
+    "errors": {
+      "invalid": "Wrong code. Try again.",
+      "expired": "Code expired. Request a new one.",
+      "no-code": "No active code. Click 'Resend code'.",
+      "too-many-attempts": "Too many tries. Request a new code.",
+      "not-authenticated": "Your session expired. Please log in again.",
+      "wrong-role": "Verification is for customers only.",
+      "failed": "Something went wrong. Please try again later."
+    }
+  },
+  "book": {
+    "title": "Confirm your booking",
+    "subtitle": "Review the details and lock in your spot.",
+    "session": "Class",
+    "with": "with",
+    "priceLabel": "Price",
+    "free": "Free",
+    "confirmCta": "Confirm booking",
+    "reserveCta": "Reserve (pay at the desk)",
+    "payAtDeskNote": "Drop-in fee is paid at the front desk before class. Online payment via iDEAL is coming soon.",
+    "alreadyBooked": "You've already booked this class.",
+    "viewBookings": "Go to my bookings",
+    "isFull": "This class is full.",
+    "isPast": "This class has already happened.",
+    "isCancelled": "This class has been cancelled.",
+    "backToSchedule": "Back to the schedule",
+    "reason": {
+      "free-class": "This class is always free.",
+      "membership-unlimited": "Included with your all-access membership.",
+      "credit": "One credit from your stampcard will be used.",
+      "covered": "Included with your membership.",
+      "trial": "Free during your trial.",
+      "drop-in": "Drop-in rate because you don't have an active membership yet."
+    }
+  },
+  "me": {
+    "title": "My account",
+    "greeting": "Hi {name}, good to see you.",
+    "upcoming": "Upcoming classes",
+    "noUpcoming": "No bookings yet. Head to the schedule to grab a spot.",
+    "history": "History",
+    "profile": "Profile",
+    "profileHint": "Update your contact details. Membership and internal notes are managed by the front desk.",
+    "name": "Name",
+    "phone": "Phone",
+    "dateOfBirth": "Date of birth",
+    "save": "Save",
+    "saved": "Saved.",
+    "saveError": "Save failed.",
+    "cancel": "Cancel",
+    "cancelError": "Cancel failed.",
+    "signOut": "Sign out",
+    "with": "with",
+    "session": "Class",
+    "memberships": "Memberships",
+    "membership": "Membership",
+    "noMemberships": "You don't have an active membership yet. Ask at the desk about our packs.",
+    "creditsLabel": "credits",
+    "unlimitedLabel": "Unlimited",
+    "validUntil": "Valid until {date}",
+    "notCancellable": "This booking can no longer be cancelled."
+  },
+  "teach": {
+    "title": "My classes",
+    "greeting": "Hi {name}, here's what you're teaching.",
+    "upcoming": "Upcoming classes",
+    "noUpcoming": "No upcoming classes.",
+    "attendee": "Attendee",
+    "attendeeCount": "{count, plural, =0 {no sign-ups yet} =1 {1 attendee} other {# attendees}} (cap. {capacity})",
+    "noAttendees": "No sign-ups yet.",
+    "session": "Class"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "terms": "Terms",
+    "privacy": "Privacy"
+  },
+  "registration": {
+    "back": "My account",
+    "kicker": "Your registration",
+    "session": "Class",
+    "when": "When",
+    "teacher": "Teacher",
+    "where": "Where",
+    "status": "Status",
+    "payment": "Payment",
+    "statuses": {
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "attended": "Checked in",
+      "noshow": "No-show"
+    },
+    "payments": {
+      "free": "Free",
+      "credit": "Paid with a credit",
+      "unpaid": "Pay at the desk",
+      "paid": "Paid",
+      "refunded": "Refunded"
+    },
+    "showCode": "Show code at the counter",
+    "codeHint": "Hold your screen up to the scanner at the counter.",
+    "codeExplainer": "Your personal check-in code. It is also in your confirmation email.",
+    "close": "Close",
+    "checkedIn": "You are checked in for this class."
+  },
+  "banner": {
+    "startsIn": "starts in {time}",
+    "inDays": "{days} d {hours} h",
+    "inHours": "{hours} h {minutes} min",
+    "inMinutes": "{minutes} min {seconds} s",
+    "live": "is happening now",
+    "open": "Open registration"
+  },
+  "checkin": {
+    "title": "Check-in",
+    "forStaff": "This is a check-in code. Show it at the counter; staff scan it to check you in.",
+    "staffLogin": "Staff: sign in to check someone in",
+    "checkIn": "Check in",
+    "checkedIn": "Checked in",
+    "checkedInAt": "Checked in at {time}",
+    "noShow": "Marked as a no-show.",
+    "errors": {
+      "not-staff": "Only staff can check someone in.",
+      "not-found": "This check-in code does not exist.",
+      "not-your-class": "Only the teacher of this class or an admin can check this in.",
+      "cancelled": "This booking was cancelled.",
+      "failed": "Check-in failed. Please try again."
+    }
+  }
+}

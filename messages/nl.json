@@ -1,0 +1,267 @@
+{
+  "nav": {
+    "schedule": "Rooster",
+    "tryOut": "Proefles",
+    "about": "Over ons",
+    "contact": "Contact",
+    "login": "Inloggen",
+    "myAccount": "Mijn account",
+    "myClasses": "Mijn lessen",
+    "admin": "Admin",
+    "bookTrial": "Boek een proefles"
+  },
+  "home": {
+    "heroLine1": "Train",
+    "heroLine2Prefix": "op",
+    "heroLine2Highlight": "jouw",
+    "heroLine2Suffix": "niveau.",
+    "heroSubtitle": "Groepslessen, personal training en sparring in een sfeer die wél doorpakt. Eerste les is gratis, kom gewoon eens kijken.",
+    "ctaSecondary": "Bekijk het rooster",
+    "offerHeading": "Het aanbod",
+    "viewSchedule": "Volledig rooster",
+    "cards": {
+      "group": {
+        "title": "Groepslessen",
+        "body": "Techniek, conditie en drills in een groep. Alle niveaus welkom, ervaring niet vereist."
+      },
+      "pt": {
+        "title": "Personal training",
+        "body": "Eén op één met een coach. Werk gericht aan techniek, kracht of een specifieke voorbereiding."
+      },
+      "sparring": {
+        "title": "Sparring",
+        "body": "Voor wie verder wil. Gecontroleerd sparren op afspraak, voor gevorderden."
+      }
+    },
+    "quote": {
+      "line1": "“If my mind can conceive it,",
+      "line2": "if my heart can believe it,",
+      "line3Highlight": "then I can achieve it.”",
+      "attribution": "Muhammad Ali"
+    }
+  },
+  "tryOut": {
+    "title": "Boek een proefles",
+    "subtitle": "Je eerste les is gratis. Geen lange verhalen, gewoon langskomen en uitproberen.",
+    "intro": "Maak een account aan, kies een les en we zien je in de zaal. Nieuw in de sport? Geen probleem, we starten op jouw niveau.",
+    "cta": "Naar het rooster"
+  },
+  "schedule": {
+    "title": "Rooster",
+    "subtitle": "Bekijk wat er deze week op de planning staat en boek direct een plek.",
+    "comingSoon": "De interactieve weekweergave staat in de volgende update.",
+    "prevWeek": "Vorige week",
+    "nextWeek": "Volgende week",
+    "thisWeek": "Deze week",
+    "allTypes": "Alle lessen",
+    "noSessions": "Geen lessen ingepland deze week.",
+    "closed": "Gesloten",
+    "capacityLeft": "{count, plural, =0 {vol} =1 {nog 1 plek} other {nog # plekken}}",
+    "with": "met",
+    "book": "Boek",
+    "booked": "Geboekt",
+    "full": "Vol",
+    "loginToBook": "Inloggen om te boeken",
+    "bookSuccess": "Geboekt! We zien je in de zaal.",
+    "bookErrors": {
+      "full": "Deze les zit vol.",
+      "duplicate": "Je hebt deze les al geboekt.",
+      "credits-changed": "Je tegoed is veranderd tijdens het boeken. Controleer de prijs en probeer het opnieuw.",
+      "wrong-role": "Boekingen verlopen via een klantaccount.",
+      "not-authenticated": "Log eerst in om te boeken.",
+      "unverified": "Bevestig eerst je e-mailadres om te kunnen boeken.",
+      "failed": "Boeken mislukt. Probeer het later opnieuw.",
+      "started": "Deze les is al begonnen."
+    },
+    "now": "NU",
+    "legend": {
+      "label": "Kleurlegenda",
+      "past": "Geweest",
+      "future": "Beschikbaar",
+      "booked": "Geboekt"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Vragen, een groepsboeking of gewoon meer weten? Neem contact op.",
+    "address": "Adres",
+    "email": "E-mail",
+    "phone": "Telefoon",
+    "notConfigured": "De contactgegevens zijn nog niet ingevuld."
+  },
+  "about": {
+    "title": "Over {name}",
+    "subtitle": "Trainen met een no-nonsense aanpak en een warm welkom.",
+    "bodyDefault": "Een plek voor iedereen die wil trainen, ongeacht leeftijd of niveau. We trainen gericht, met persoonlijke aandacht, en zorgen dat je je vanaf dag één op je plek voelt."
+  },
+  "login": {
+    "title": "Inloggen",
+    "subtitle": "Log in om je lessen en lidmaatschap te beheren.",
+    "teacherTitle": "Inloggen als trainer",
+    "teacherSubtitle": "Log in om je lessen en deelnemers te bekijken.",
+    "asCustomer": "Ik ben een lid, log me in als klant",
+    "asTeacher": "Ik ben trainer, log me in als trainer",
+    "email": "E-mailadres",
+    "password": "Wachtwoord",
+    "submit": "Inloggen",
+    "error": "E-mail of wachtwoord onjuist.",
+    "noAccount": "Nog geen account? Vraag het aan de balie."
+  },
+  "signup": {
+    "title": "Account aanmaken",
+    "subtitle": "Maak een account aan om lessen te boeken. Het duurt minder dan een minuut.",
+    "name": "Naam",
+    "email": "E-mailadres",
+    "password": "Wachtwoord",
+    "passwordHint": "Minimaal 8 tekens.",
+    "submit": "Account aanmaken",
+    "verifyNote": "We sturen je een verificatiecode per e-mail. Daarna kun je boeken.",
+    "haveAccount": "Heb je al een account?",
+    "logInInstead": "Inloggen",
+    "errors": {
+      "name-required": "Vul je naam in.",
+      "invalid-email": "Vul een geldig e-mailadres in.",
+      "weak-password": "Wachtwoord moet minimaal 8 tekens zijn.",
+      "email-in-use": "Er bestaat al een account met dit e-mailadres. Log in.",
+      "failed": "Account aanmaken mislukt. Probeer het later opnieuw."
+    }
+  },
+  "verify": {
+    "title": "Verifieer je e-mailadres",
+    "subtitle": "Vul de zescijferige code in die we je net hebben gestuurd.",
+    "sentTo": "We hebben een code gestuurd naar <b>{email}</b>. Kijk ook even in je spam.",
+    "codeLabel": "Verificatiecode",
+    "submit": "Bevestig",
+    "resend": "Code opnieuw sturen",
+    "resent": "Nieuwe code verstuurd.",
+    "rateLimited": "Even wachten, probeer het over {sec} seconden opnieuw.",
+    "errors": {
+      "invalid": "Code klopt niet. Probeer het opnieuw.",
+      "expired": "Code is verlopen. Vraag een nieuwe code aan.",
+      "no-code": "Geen actieve code. Klik op 'Code opnieuw sturen'.",
+      "too-many-attempts": "Te veel pogingen. Vraag een nieuwe code aan.",
+      "not-authenticated": "Je sessie is verlopen. Log opnieuw in.",
+      "wrong-role": "Verifiëren is alleen voor klanten.",
+      "failed": "Er ging iets mis. Probeer het later opnieuw."
+    }
+  },
+  "book": {
+    "title": "Boeking bevestigen",
+    "subtitle": "Controleer de gegevens en bevestig je plek.",
+    "session": "Les",
+    "with": "met",
+    "priceLabel": "Prijs",
+    "free": "Gratis",
+    "confirmCta": "Bevestig boeking",
+    "reserveCta": "Reserveer (betalen aan de balie)",
+    "payAtDeskNote": "Betaal je drop-in aan de balie voor de les. Online betalen via iDEAL komt eraan.",
+    "alreadyBooked": "Deze les heb je al geboekt.",
+    "viewBookings": "Naar mijn boekingen",
+    "isFull": "Deze les zit vol.",
+    "isPast": "Deze les is al geweest.",
+    "isCancelled": "Deze les is afgelast.",
+    "backToSchedule": "Terug naar het rooster",
+    "reason": {
+      "free-class": "Deze les is altijd gratis.",
+      "membership-unlimited": "Inbegrepen bij je all-access lidmaatschap.",
+      "credit": "Eén tegoed van je strippenkaart wordt gebruikt.",
+      "covered": "Inbegrepen bij je lidmaatschap.",
+      "trial": "Gratis tijdens je proefperiode.",
+      "drop-in": "Drop-in tarief omdat je (nog) geen actief lidmaatschap hebt."
+    }
+  },
+  "me": {
+    "title": "Mijn account",
+    "greeting": "Hoi {name}, fijn dat je er bent.",
+    "upcoming": "Komende lessen",
+    "noUpcoming": "Geen geboekte lessen. Ga naar het rooster om een plek te reserveren.",
+    "history": "Geschiedenis",
+    "profile": "Profiel",
+    "profileHint": "Update je contactgegevens. Lidmaatschap en interne notities worden door de balie beheerd.",
+    "name": "Naam",
+    "phone": "Telefoon",
+    "dateOfBirth": "Geboortedatum",
+    "save": "Opslaan",
+    "saved": "Opgeslagen.",
+    "saveError": "Opslaan mislukt.",
+    "cancel": "Annuleren",
+    "cancelError": "Annuleren mislukt.",
+    "signOut": "Uitloggen",
+    "with": "met",
+    "session": "Les",
+    "memberships": "Lidmaatschappen",
+    "membership": "Lidmaatschap",
+    "noMemberships": "Je hebt nog geen actief lidmaatschap. Vraag aan de balie naar onze pakketten.",
+    "creditsLabel": "tegoeden",
+    "unlimitedLabel": "Onbeperkt",
+    "validUntil": "Geldig tot {date}",
+    "notCancellable": "Deze boeking kan niet meer geannuleerd worden."
+  },
+  "teach": {
+    "title": "Mijn lessen",
+    "greeting": "Hoi {name}, hier staan jouw lessen.",
+    "upcoming": "Komende lessen",
+    "noUpcoming": "Geen aankomende lessen.",
+    "attendee": "Deelnemer",
+    "attendeeCount": "{count, plural, =0 {nog geen aanmeldingen} =1 {1 deelnemer} other {# deelnemers}} (cap. {capacity})",
+    "noAttendees": "Nog geen aanmeldingen.",
+    "session": "Les"
+  },
+  "footer": {
+    "rights": "Alle rechten voorbehouden",
+    "terms": "Algemene voorwaarden",
+    "privacy": "Privacy"
+  },
+  "registration": {
+    "back": "Mijn account",
+    "kicker": "Je inschrijving",
+    "session": "Les",
+    "when": "Wanneer",
+    "teacher": "Docent",
+    "where": "Waar",
+    "status": "Status",
+    "payment": "Betaling",
+    "statuses": {
+      "confirmed": "Bevestigd",
+      "cancelled": "Geannuleerd",
+      "attended": "Ingecheckt",
+      "noshow": "Niet verschenen"
+    },
+    "payments": {
+      "free": "Gratis",
+      "credit": "Betaald met een tegoed",
+      "unpaid": "Betalen aan de balie",
+      "paid": "Betaald",
+      "refunded": "Terugbetaald"
+    },
+    "showCode": "Toon code aan de balie",
+    "codeHint": "Houd je scherm voor de scanner bij de balie.",
+    "codeExplainer": "Je persoonlijke check-in code. Hij staat ook in je bevestigingsmail.",
+    "close": "Sluiten",
+    "checkedIn": "Je bent ingecheckt voor deze les."
+  },
+  "banner": {
+    "startsIn": "begint over {time}",
+    "inDays": "{days} d {hours} u",
+    "inHours": "{hours} u {minutes} min",
+    "inMinutes": "{minutes} min {seconds} s",
+    "live": "is nu bezig",
+    "open": "Open inschrijving"
+  },
+  "checkin": {
+    "title": "Inchecken",
+    "forStaff": "Dit is een check-in code. Laat hem zien aan de balie; de medewerker scant hem om je in te checken.",
+    "staffLogin": "Medewerker: log in om iemand in te checken",
+    "checkIn": "Inchecken",
+    "checkedIn": "Ingecheckt",
+    "checkedInAt": "Ingecheckt om {time}",
+    "noShow": "Gemarkeerd als niet verschenen.",
+    "errors": {
+      "not-staff": "Alleen medewerkers kunnen iemand inchecken.",
+      "not-found": "Deze check-in code bestaat niet.",
+      "not-your-class": "Alleen de docent van deze les of een beheerder kan dit inchecken.",
+      "cancelled": "Deze boeking is geannuleerd.",
+      "failed": "Inchecken mislukt. Probeer het opnieuw."
+    }
+  }
+}

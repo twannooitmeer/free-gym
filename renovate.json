@@ -1,0 +1,17 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["on the first day of the month"],
+  "packageRules": [
+    {
+      "description": "Payload's packages move together.",
+      "matchPackageNames": ["payload", "@payloadcms/**"],
+      "groupName": "payload"
+    },
+    {
+      "description": "One PR for all minor and patch updates.",
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "minor and patch"
+    }
+  ]
+}
